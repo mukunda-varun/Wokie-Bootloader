@@ -176,10 +176,10 @@ int main(void)
   MX_GPIO_Init();
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
-  for(int i = 0; i <8 ; i++)
+  for(int i = 0; i < 10 ; i++)
   {
 	  HAL_GPIO_TogglePin(GPIO_PORT, GPIO_PIN);
-	  HAL_Delay(500);
+	  HAL_Delay(250);
   }
 
 

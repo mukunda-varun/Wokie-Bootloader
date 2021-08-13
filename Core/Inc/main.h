@@ -51,7 +51,7 @@ typedef enum{
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-#define 	LED_BUZZER_OTA					0
+#define 	LED_BUZZER_OTA					1
 #define		ADDRESS_TO_READ 			0x8060000
 /* USER CODE END EM */
 

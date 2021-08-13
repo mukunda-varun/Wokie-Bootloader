@@ -217,13 +217,13 @@ uint8_t GetKey(void)
   while (!Received_Data_Flag)
   { //IWDG_ReloadCounter();
    // state = GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_5);
-  if(time_out++>0xfffffff)
-  {
-	  time_out=0;
-	  jump_to_User_application();
+	  if(time_out++>0xfffffff)
+	  {
+		  time_out=0;
+		  jump_to_User_application();
 
-    //Execute_New_Prg();
-  }
+		//Execute_New_Prg();
+	  }
   }
   key = Received_Data;
 //  time_out=0;
