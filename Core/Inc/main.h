@@ -53,6 +53,8 @@ typedef enum{
 /* USER CODE BEGIN EM */
 #define 	LED_BUZZER_OTA					1
 #define		ADDRESS_TO_READ 			0x8060000
+
+#define 	OTA_TIMEOUT_VALUE			0x32000000			//For approximate timeout of 1:30(mm:ss)
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

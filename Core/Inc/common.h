@@ -26,12 +26,13 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
 #include "usbd_cdc_if.h"
+#include "main.h"
 //#include "stm324xg_eval.h"
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 /* Constants used by Serial Command Line Mode */
-#define CMD_STRING_SIZE       128
+#define 	CMD_STRING_SIZE       		128
 
 /* Common routines */
 #define IS_AF(c)  ((c >= 'A') && (c <= 'F'))

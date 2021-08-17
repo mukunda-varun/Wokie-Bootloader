@@ -255,63 +255,63 @@ int32_t Ymodem_Receive (uint8_t *buf)
                     file_size[i++] = '\0';
                     Str2Int(file_size, &size);
 
-								/* Test the size of the image to be sent */
-								/* Image size is greater than Flash size */
-								if (size > (USER_FLASH_SIZE + 1))
-								{
-									/* End session */
-									memset(usb_data,0,64);
-									usb_data[0] = CA;
-									usb_data[1] = CA;
-									Send_String(usb_data,2);
-									//Send_Byte(CA);
-									return -1;
-								}
-								/* erase user application area */
-								Clear_Flash();
+					/* Test the size of the image to be sent */
+					/* Image size is greater than Flash size */
+					if (size > (USER_FLASH_SIZE + 1))
+					{
+						/* End session */
+						memset(usb_data,0,64);
+						usb_data[0] = CA;
+						usb_data[1] = CA;
+						Send_String(usb_data,2);
+						//Send_Byte(CA);
+						return -1;
+					}
+					/* erase user application area */
+					Clear_Flash();
 //								FLASH_If_Erase(APPLICATION_ADDRESS);
-							//	erase_to_flash();
-								memset(usb_data,0,64);
-								usb_data[0] = ACK;
-								usb_data[1] = CRC16;
-								Send_String(usb_data,2);
+				//	erase_to_flash();
+					memset(usb_data,0,64);
+					usb_data[0] = ACK;
+					usb_data[1] = CRC16;
+					Send_String(usb_data,2);
 
-							}
-							/* Filename packet is empty, end session */
-							else
-							{
-								Send_Byte(ACK);
-								file_done = 1;
-								session_done = 1;
-								break;
-							}
-						}
-						/* Data packet */
-						else
-						{
-							memcpy(buf_ptr, packet_data + PACKET_HEADER, packet_length);
-							ramsource = (uint32_t)buf;
+				}
+				/* Filename packet is empty, end session */
+				else
+				{
+					Send_Byte(ACK);
+					file_done = 1;
+					session_done = 1;
+					break;
+				}
+			}
+			/* Data packet */
+			else
+			{
+				memcpy(buf_ptr, packet_data + PACKET_HEADER, packet_length);
+				ramsource = (uint32_t)buf;
 
-                  /* Write received data in Flash */
-                 if (FLASH_If_Write(&flashdestination, (uint32_t*) ramsource, (uint16_t) packet_length)  == 0)
-                  //if(1)
-                  {
-                    Send_Byte(ACK);
-                  }
-                  else /* An error occurred while writing to Flash memory */
-                  {
-                    /* End session */
-								memset(usb_data,0,64);
-								usb_data[0] = CA;
-								usb_data[1] = CA;
-								Send_String(usb_data,2);
-								return -2;
-                  }
-                }
-                packets_received ++;
-                session_begin = 1;
-              }
-          }
+			  /* Write received data in Flash */
+			 if (FLASH_If_Write(&flashdestination, (uint32_t*) ramsource, (uint16_t) packet_length)  == 0)
+			  //if(1)
+			  {
+				Send_Byte(ACK);
+			  }
+			  else /* An error occurred while writing to Flash memory */
+			  {
+				/* End session */
+							memset(usb_data,0,64);
+							usb_data[0] = CA;
+							usb_data[1] = CA;
+							Send_String(usb_data,2);
+							return -2;
+			  }
+			}
+			packets_received ++;
+			session_begin = 1;
+		  }
+	  }
           break;
         case 1:
 					memset(usb_data,0,64);
